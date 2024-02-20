@@ -34,31 +34,12 @@ size_t lomuto(int *array, size_t size, ssize_t l, ssize_t h)
 	int x, y, pv = array[h];
 
 	for (x = y = l; y < h; y++)
-	{
+
 		if (array[y] < pv)
 			swap(array, size, &array[y], &array[x++]);
-		swap(array, size, &array[x], &array[h]);
+	swap(array, size, &array[x], &array[h]);
+	return (x);
 
-		return (x);
-	}
-}
-
-
-
-/**
- * quick_sort - fun. call
- *
- * @array: int array
- * @size: array size
- *
- * Return: void
- */
-
-void quick_sort(int *array, size_t size)
-{
-	if (!array || !size)
-		return;
-	quicks(array, size, 0, size - 1);
 }
 
 
@@ -80,4 +61,20 @@ void quicks(int *array, size_t size, ssize_t l, ssize_t h)
 		quicks(array, size, l, q - 1);
 		quicks(array, size, q + 1, h);
 	}
+}
+
+/**
+ * quick_sort - fun. call
+ *
+ * @array: int array
+ * @size: array size
+ *
+ * Return: void
+ */
+
+void quick_sort(int *array, size_t size)
+{
+	if (!array || !size)
+		return;
+	quicks(array, size, 0, size - 1);
 }
