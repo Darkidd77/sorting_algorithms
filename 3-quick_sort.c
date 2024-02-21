@@ -12,10 +12,9 @@
  */
 void swap(int *array, size_t size, int *x, int *y)
 {
-	*x = *x + *y;
-	*y = *x - *y;
-	*x = *x - *y;
-
+	int tmp = *x;
+	*x = *y;
+	*y = temp;
 }
 
 
@@ -34,12 +33,16 @@ size_t lomuto(int *array, size_t size, ssize_t l, ssize_t h)
 	int x, y, pv = array[h];
 
 	for (x = y = l; y < h; y++)
-
+	{
 		if (array[y] < pv)
-			swap(array, size, &array[y], &array[x++]);
-	swap(array, size, &array[x], &array[h]);
-	return (x);
+		{
+			swap(&array[y], &array[x]);
+			x++;
+		}
+	}
 
+	swap(&array[x], &array[h]);
+	return (x);
 }
 
 
