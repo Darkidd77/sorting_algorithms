@@ -1,40 +1,37 @@
 #include "sort.h"
 
 /**
- * swap - swap - swap two int
+ * swap - Swap two integers
  *
- * @array: the int array
- * @size: array size
- * @x: 1st value address
- * @y: 2nd value address
+ * @x: Pointer to the first integer
+ * @y: Pointer to the second integer
  *
  * Return: void
  */
-void swap(int *array, size_t size, int *x, int *y)
+void swap(int *x, int *y)
 {
-	int tmp = *x;
+	int temp = *x;
 	*x = *y;
 	*y = temp;
 }
 
-
 /**
- * lomuto - array partitions
+ * lomuto - Lomuto partition scheme
  *
- * @array: int array
- * @size: array size
- * @l: low index
- * @h: high index
+ * @array: Integer array
+ * @size: Array size
+ * @l: Low index
+ * @h: High index
  *
- * Return: void
+ * Return: The final position of the pivot element
  */
 size_t lomuto(int *array, size_t size, ssize_t l, ssize_t h)
 {
-	int x, y, pv = array[h];
+	int x, y, pvt = array[h];
 
 	for (x = y = l; y < h; y++)
 	{
-		if (array[y] < pv)
+		if (array[y] < pvt)
 		{
 			swap(&array[y], &array[x]);
 			x++;
@@ -45,15 +42,15 @@ size_t lomuto(int *array, size_t size, ssize_t l, ssize_t h)
 	return (x);
 }
 
-
 /**
- * quicks - quick sort Lomuto scheme
+ * quicks - Quick sort using Lomuto scheme
  *
- * @array: int array
- * @size: array size
- * @l: low index
- * @h: high index
+ * @array: Integer array
+ * @size: Array size
+ * @l: Low index
+ * @h: High index
  *
+ * Return: void
  */
 void quicks(int *array, size_t size, ssize_t l, ssize_t h)
 {
@@ -67,17 +64,17 @@ void quicks(int *array, size_t size, ssize_t l, ssize_t h)
 }
 
 /**
- * quick_sort - fun. call
+ * quick_sort - Call to perform quick sort
  *
- * @array: int array
- * @size: array size
+ * @array: Integer array
+ * @size: Array size
  *
  * Return: void
  */
-
 void quick_sort(int *array, size_t size)
 {
 	if (!array || !size)
 		return;
+
 	quicks(array, size, 0, size - 1);
 }
